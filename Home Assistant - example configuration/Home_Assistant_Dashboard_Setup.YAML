@@ -7,11 +7,14 @@ cards:
   - type: entities
     entities:
       - entity: switch.water_pump
-      - entity: sensor.monstara_soil_moisture_value
+      - entity: sensor.soil_moisture_value
+      - entity: sensor.plant_watering_last_4_hours
+        icon: mdi:chart-bar
+        name: watering triggers (last 4 hours)
     state_color: true
     title: Monstera Plant
   - type: gauge
-    entity: sensor.monstara_soil_moisture_value
+    entity: sensor.soil_moisture_value
     name: Soil moisture
     # Adds guage display to dashboard to show red for dry and over-watered, 
     # and green for OK. Change the values to match the moisture status value 
