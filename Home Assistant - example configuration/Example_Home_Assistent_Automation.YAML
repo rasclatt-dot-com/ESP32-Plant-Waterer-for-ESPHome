@@ -15,17 +15,27 @@ trigger:
     domain: binary_sensor
     for:
       hours: 0
-      minutes: 10
+      minutes: 30
       seconds: 0
       
+# Falesafe configuration prevents the automation running
+# if watering has been triggered 4 times in the last 4 hours
+# mitigates issues where the water tank is empty (project does
+# not include a sensor to directly detect this) or the water pipe 
+# may have moved and watering outside the pot.
+# for this to work the history_stat sensor needs to be added to the 
+# configuration.yaml file (see readme.txt and example folder)
+condition:
+  - condition: numeric_state
+    entity_id: sensor.monstera_plant_watering_last_4_hours
+    below: "4"
 # Added a condition that the pump must have been off for 1 hour
 # This prevents the automation repeatedly triggering and drenching
 # the plant / room before the soli can absorb the water from a previously
 # triggered watering cycle.
-condition:
   - condition: device
     type: is_off
-    device_id: <Home assistant device specific ID>
+    device_id: 94b9fefa4346884de7654aced929c5f7
     entity_id: switch.water_pump
     domain: switch
     for:
