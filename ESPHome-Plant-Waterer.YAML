@@ -56,6 +56,8 @@ sensor:
         - 1.43 -> 100.0
  
 # This sensor is useful as a trigger for automation in Home Assistant
+# change the value of (soil_moisture).state > to desired threshold
+# anything below this value will report dry in home assistant.
 binary_sensor:
   - platform: template
     name: Monstera Soil Moisture
@@ -85,7 +87,8 @@ switch:
     - logger.log: "Pump Turned Off!"
 
 # MQTT Setup - esphome defaults to using hostname as prefix, add 
-# topic_prefix: if you want to change this.
+# topic_prefix: if you want something more specific.
+# Staatus, sensors, light and switch are published via MQTT
 
 mqtt:
   broker: <INSERT BROKER HOSTNAME/ IP>
