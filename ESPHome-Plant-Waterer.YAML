@@ -1,0 +1,96 @@
+esphome:
+  name: plant-waterer
+
+# Board specific config - change if not using MG Atom
+esp32:
+  board: m5stack-atom
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API - these values are autocreated by
+# ESPhome when setting new device - or you can manually add if 
+# required.
+api:
+  encryption:
+    key: "<YOUR API KEY>"
+ota:
+  password: "<YOUR OTA KEY"
+
+#Wifi Setup....
+# Manually configure IP details - comment out if you use DHCP
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: <IP_ADDRESS>
+    gateway: <GATEWAY_IP>
+    subnet: <SUBNET_MASK>
+
+# Configuration of M5 Atom Lite onboard RGB LED    
+light:
+  - platform: fastled_clockless
+    chipset: WS2812
+    pin: 27
+    num_leds: 1
+    rgb_order: grb
+    name: "FastLED Light"
+
+# M5 Atom-Lite Grove port used to connect sensor, pin and sensor 
+# calibraation may need updating for other platforms/ sensors
+sensor:
+  - platform: adc
+    pin: 32
+    name: Monstara Soil Moisture Value
+    attenuation: 11db
+    id:  soil_moisture
+    accuracy_decimals: 0
+    unit_of_measurement: "%"
+    update_interval: 60s
+    icon: mdi:flower
+    filters:
+      - calibrate_linear:
+        - 1.795 -> 0.0
+        - 1.43 -> 100.0
+ 
+# This sensor is useful as a trigger for automation in Home Assistant
+binary_sensor:
+  - platform: template
+    name: Monstera Soil Moisture
+    device_class: moisture
+    #Change this value to determine desire wetness of soil
+    lambda: |-
+        if (id(soil_moisture).state > 35) {
+          return true; 
+        } else {
+          return false; 
+        }
+
+# Timed switch for water pump - manually trigger water pump for specified time.
+# Ajust delay to suit lenght of time the pump runs
+# This was added to prevent the plant/ room getting drenched by an 
+# accidental press of the switch emptying a whole water resevoir!
+switch:
+  - platform: gpio
+    pin: 26
+    id: relay
+    name: "Water pump"
+    icon: "mdi:water"
+    on_turn_on:
+    - logger.log: "Pump Turned On!"
+    - delay: 30s
+    - switch.turn_off: relay
+    - logger.log: "Pump Turned Off!"
+
+# MQTT Setup - esphome defaults to using hostname as prefix, add 
+# topic_prefix: if you want to change this.
+
+mqtt:
+  broker: <INSERT BROKER HOSTNAME/ IP>
+  port: 1883
+  username: !secret mqtt_hostname
+  password: !secret mqtt_password
+  
+captive_portal:
