@@ -9,10 +9,10 @@ Operating System 8.4
 Frontend 20220802.0 - latest
 
 <img
-  src="/ESP32-Plant-Waterer-for-ESPHome/assets/Screen%20Shot%202022-08-12%20at%2010.47.49%20am.png"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  src="https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2010.47.49%20am.png"
+  alt="Home Assistant Dashboard configuration"
+  title="Home Assistant Dashboard configuration"
+  style="display: inline-block; margin: 0 auto; max-width: 150px">
 
 https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2010.47.49%20am.png
 https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2010.48.05%20am.png
