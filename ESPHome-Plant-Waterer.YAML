@@ -43,7 +43,7 @@ light:
 sensor:
   - platform: adc
     pin: 32
-    name: Monstara Soil Moisture Value
+    name: Soil Moisture Value
     attenuation: 11db
     id:  soil_moisture
     accuracy_decimals: 0
@@ -60,7 +60,7 @@ sensor:
 # anything below this value will report dry in home assistant.
 binary_sensor:
   - platform: template
-    name: Monstera Soil Moisture
+    name: Soil Moisture
     device_class: moisture
     #Change this value to determine desire wetness of soil
     lambda: |-
