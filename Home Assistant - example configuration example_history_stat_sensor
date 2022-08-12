@@ -1,0 +1,14 @@
+# Add this sensor to Home Assistant configuration.yaml 
+# This sensor monitors/ counts how many times the the last 4 hours
+# this is used in the example watering automation as a failsafe and alerting
+# in case of empty water tank or dislodged water pipe (spraying outside the plant pot)
+
+sensor:
+  - platform: history_stats
+    name: plant watering last 4 hours
+    entity_id: automation.water_the_plant
+    state: "on"
+    type: count
+    end: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+    duration:
+      hours: 4
