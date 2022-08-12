@@ -4,6 +4,9 @@
 # triger is set to only work when the readings have been
 # consistently below the moisture threshhold configured 
 # status variable configured in ESPHome YAML (See readme)
+# <Home assistant device specific ID> created by Home Assistant 
+# so dont paste over it!
+
 
 alias: Water the Plant
 description: "Waters the plant when soil is dry"
