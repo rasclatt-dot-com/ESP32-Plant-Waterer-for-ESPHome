@@ -1,0 +1,30 @@
+# Example Home AssistantDashboard setup based on "Vertical Stack"
+# card - use YAML editor to add (and customise).
+
+type: vertical-stack
+cards:
+# Adds water pump manual switch and moisture % value to the card
+  - type: entities
+    entities:
+      - entity: switch.water_pump
+      - entity: sensor.monstara_soil_moisture_value
+    state_color: true
+    title: Monstera Plant
+  - type: gauge
+    entity: sensor.monstara_soil_moisture_value
+    name: Soil moisture
+    # Adds guage display to dashboard to show red for dry and over-watered, 
+    # and green for OK. Change the values to match the moisture status value 
+    # in ESPHome YAML to match "DRY" threshold according to your plants moisture 
+    # and pot size requirements.
+    segments:
+      - from: 0
+        color: '#db4437'
+        label: Dry
+      - from: 35
+        color: '#43a047'
+        label: Good
+      - from: 55
+        color: '#db4437'
+        label: Too Wet
+    needle: true
