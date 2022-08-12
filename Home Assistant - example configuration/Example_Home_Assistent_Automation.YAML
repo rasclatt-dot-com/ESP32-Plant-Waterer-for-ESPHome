@@ -27,7 +27,7 @@ trigger:
 # configuration.yaml file (see readme.txt and example folder)
 condition:
   - condition: numeric_state
-    entity_id: sensor.monstera_plant_watering_last_4_hours
+    entity_id: sensor.plant_watering_last_4_hours
     below: "4"
 # Added a condition that the pump must have been off for 1 hour
 # This prevents the automation repeatedly triggering and drenching
@@ -35,7 +35,7 @@ condition:
 # triggered watering cycle.
   - condition: device
     type: is_off
-    device_id: 94b9fefa4346884de7654aced929c5f7
+    device_id: <Home assistant device specific ID>
     entity_id: switch.water_pump
     domain: switch
     for:
