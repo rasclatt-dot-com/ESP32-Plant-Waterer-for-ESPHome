@@ -1,0 +1,62 @@
+# This automation provides alerting inn the event that the plant has 
+# been dry for 4 hours and the watering automation has triggered 4 times
+# in 4 hours.
+# This overcomes a project limitation that there is no water level sensor 
+# in the resevoit/ tank, also a failsafe in the event the water feed is 
+# dislodged and spraying water outside the plant pot. (will be a bit of
+# water mess to clean up - but stops the automation continuing to damage
+# the pump or continue to spray water!
+
+alias: Plant Watering Alert
+description: ""
+trigger:
+  - type: not_moist
+    platform: device
+    device_id: 94b9fefa4346884de7654aced929c5f7
+    entity_id: binary_sensor.soil_moisture
+    domain: binary_sensor
+    for:
+      hours: 4
+      minutes: 0
+      seconds: 0
+# history_stat sensor must be added to home assistent 
+# configuration.yaml for this to work(see readme.txt and example 
+# files for more info)
+condition:
+  - condition: numeric_state
+    entity_id: sensor.plant_watering_last_4_hours
+    below: "4"
+# push notification to mobile device with home assistant app installed
+# need to update notify.mobile_app_<your phone> with your specific device 
+# ID in home Assistant for this to work
+action:
+  - service: notify.mobile_app_<your phone>
+    data:
+      message: Monstera watering alert!
+      title: Water tank empty or supply tube dislodged
+# same as above - but this time push notification to home assistant (web)  
+  - service: notify.persistent_notification
+    data:
+      message: Plant watering alert
+      title: >-
+        Water tank empty or supply tube dislodged - automation disabled as a
+        precaution to prevent further water damage or pump damage
+# This turns off the watering automation to allow a human to check if water
+# has been spraying on the floor, or if the tank needs filling
+  - service: automation.turn_off
+    data: {}
+    target:
+      entity_id: automation.water_the_plant
+ # This provides a voice alert using home assistent / nabucassa cloud service
+ # if you are not subscribing to this service then you can substitute alternate
+ # TTS services. remove this section if you dont use tts/ voice or it gets annoying!
+ # and uses a DIY assistant (will publish project repo when its stable)
+ # you can add your own home assistant media player 
+ - service: tts.cloud_say
+    data:
+      entity_id: media_player.assistant_1_audio
+      message: >-
+        Just letting you know an issue with the plant watering has been
+        detected. You need to check if the tank is empty or the water pipe is
+        dislodged. The automation has been disabled as a precaution.
+mode: single
