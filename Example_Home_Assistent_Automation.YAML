@@ -69,6 +69,6 @@ action:
  # need to update with your mobile device ID
   - service: notify.mobile_app_<your_phone_ID>
     data:
-      message: Monstera plant watering automation triggered
+      message: Plant watering automation triggered
       title: Watering Triggered
 mode: single
