@@ -12,11 +12,16 @@ Frontend 20220802.0 - latest
   src="https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2010.47.49%20am.png"
   alt="Home Assistant Dashboard configuration"
   title="Home Assistant Dashboard configuration"
-  style="display: inline-block; margin: 0 auto; max-width: 150px">
+  style="display: inline-block; margin: 0 auto; width: 500px">
 
-https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2010.47.49%20am.png
-https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2010.48.05%20am.png
-https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2011.06.21%20am.png
+<img
+  src="https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2011.06.21%20am.png"
+  alt="Home Assistant MQTT Broker"
+  title="Home Assistant MQTT Broker Sucessfull found device"
+  style="display: inline-block; margin: 0 auto; width: 300px">
+
+
+
 https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2011.07.14%20am.png
 https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%2011.17.45%20am.png
 https://github.com/rasclatt-dot-com/ESP32-Plant-Waterer-for-ESPHome/blob/main/assets/Screen%20Shot%202022-08-12%20at%203.20.00%20pm.png
