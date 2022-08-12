@@ -1,0 +1,74 @@
+# Example plant watering automation 
+
+# The Capacitive sensor readings fluctuate a bit -
+# triger is set to only work when the readings have been
+# consistently below the moisture threshhold configured 
+# status variable configured in ESPHome YAML (See readme)
+
+alias: Water the Plant
+description: "Waters the plant when soil is dry"
+trigger:
+  - type: not_moist
+    platform: device
+    device_id: <Home assistant device specific ID>
+    entity_id: binary_sensor.soil_moisture
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      
+# Added a condition that the pump must have been off for 1 hour
+# This prevents the automation repeatedly triggering and drenching
+# the plant / room before the soli can absorb the water from a previously
+# triggered watering cycle.
+condition:
+  - condition: device
+    type: is_off
+    device_id: <Home assistant device specific ID>
+    entity_id: switch.water_pump
+    domain: switch
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+      
+# LED light switches on to indicate pump is running
+# M5 Atom LED is not that bright, but useful when you hear
+# a slight trickeling noise from the pump to be able to 
+# to see a light from the general direction of the sound!
+action:
+  - type: turn_on
+    device_id: <Home assistant device specific ID>
+    entity_id: light.fastled_light
+    domain: light
+    flash: short
+    brightness_pct: 100
+# Switches on pump for specified time, delay value should be 
+# ajusted to suit your specific watering requirements based on 
+# plant size/ pot size/ soil moisture requirements
+  - type: turn_on
+    device_id: <Home assistant device specific ID>
+    entity_id: switch.water_pump
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 
+    entity_id: switch.water_pump
+    domain: switch
+# Switches off light when watering cycle complete
+  - type: turn_off
+    device_id: <Home assistant device specific ID>
+    entity_id: light.fastled_light
+    domain: light
+ # added push notification to mobile phone (Home Assistant app installed)
+ # need to update with your mobile device ID
+  - service: notify.mobile_app_<your_phone_ID>
+    data:
+      message: Monstera plant watering automation triggered
+      title: Watering Triggered
+mode: single
