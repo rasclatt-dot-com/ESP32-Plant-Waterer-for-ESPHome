@@ -43,17 +43,20 @@ light:
 sensor:
   - platform: adc
     pin: 32
-    name: Soil Moisture Value
+    name: Monstara Soil Moisture Value
     attenuation: 11db
     id:  soil_moisture
     accuracy_decimals: 0
     unit_of_measurement: "%"
-    update_interval: 60s
+    update_interval: 10s
     icon: mdi:flower
     filters:
       - calibrate_linear:
         - 1.795 -> 0.0
         - 1.43 -> 100.0
+      - sliding_window_moving_average:
+          window_size: 20
+          send_every: 20
  
 # This sensor is useful as a trigger for automation in Home Assistant
 # change the value of (soil_moisture).state > to desired threshold
