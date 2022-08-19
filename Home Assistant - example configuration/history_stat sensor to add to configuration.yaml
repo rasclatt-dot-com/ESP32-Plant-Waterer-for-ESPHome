@@ -3,12 +3,13 @@
 # this is used in the example watering automation as a failsafe and alerting
 # in case of empty water tank or dislodged water pipe (spraying outside the plant pot)
 
+mqtt:
+  binary_sensor:
+    - state_topic: "plant/switch/water_pump/state"
 sensor:
-  - platform: history_stats
-    name: plant watering last 4 hours
-    entity_id: automation.water_the_plant
-    state: "on"
-    type: count
-    end: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
-    duration:
-      hours: 4
+  - platform: statistics
+    name: "watering triggered in last 4 hours"
+    entity_id: binary_sensor.mqtt_binary_sensor
+    state_characteristic: count_on
+    max_age:
+      hours: 10
