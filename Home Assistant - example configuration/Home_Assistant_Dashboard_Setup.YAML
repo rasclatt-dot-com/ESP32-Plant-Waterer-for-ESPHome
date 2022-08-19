@@ -8,11 +8,13 @@ cards:
     entities:
       - entity: switch.water_pump
       - entity: sensor.soil_moisture_value
-      - entity: sensor.plant_watering_last_4_hours
+     - entity: sensor.watering_triggered_in_last_4_hours
+        name: Number of times triggered in last 10 hours
+        secondary_info: last-changed
         icon: mdi:chart-bar
         name: watering triggers (last 4 hours)
     state_color: true
-    title: Monstera Plant
+    title: Plant
   - type: gauge
     entity: sensor.soil_moisture_value
     name: Soil moisture
@@ -20,6 +22,7 @@ cards:
     # and green for OK. Change the values to match the moisture status value 
     # in ESPHome YAML to match "DRY" threshold according to your plants moisture 
     # and pot size requirements.
+    name: Soil moisture
     segments:
       - from: 0
         color: '#db4437'
@@ -31,3 +34,4 @@ cards:
         color: '#db4437'
         label: Too Wet
     needle: true
+
