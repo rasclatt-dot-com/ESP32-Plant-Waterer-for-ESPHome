@@ -16,15 +16,15 @@ trigger:
     entity_id: binary_sensor.soil_moisture
     domain: binary_sensor
     for:
-      hours: 4
+      hours: 6
       minutes: 0
       seconds: 0
 # history_stat sensor must be added to home assistent 
 # configuration.yaml for this to work(see readme.txt and example 
 # files for more info)
 condition:
-  - condition: numeric_state
-    entity_id: sensor.plant_watering_last_4_hours
+   - condition: numeric_state
+    entity_id: watering triggered in last 10 hours
     below: "4"
 # push notification to mobile device with home assistant app installed
 # need to update notify.mobile_app_<your phone> with your specific device 
