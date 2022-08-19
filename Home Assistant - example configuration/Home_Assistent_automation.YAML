@@ -31,7 +31,7 @@ trigger:
 condition:
   - condition: numeric_state
     entity_id: sensor.plant_watering_last_4_hours
-    below: "4"
+    above: "4"
 # Added a condition that the pump must have been off for 1 hour
 # This prevents the automation repeatedly triggering and drenching
 # the plant / room before the soli can absorb the water from a previously
