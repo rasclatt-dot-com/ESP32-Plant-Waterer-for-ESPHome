@@ -105,7 +105,7 @@ The example YAML provides a failsafe automation and alerting of the watering fun
 ## Code tested and running
 
 Setup, hardware and code tested and running on;
-- Home Assistant 2022.8.3
+- Home Assistant 2022.8.3 - 2022.8.5
 - Supervisor 2022.08.3
 - Operating System 8.4
 - Frontend 20220802.0 - latest
@@ -114,4 +114,5 @@ Setup, hardware and code tested and running on;
 ## Additional information/ instructions
 
 All YAML code in this repository is heavily commented to provide additional instruction/ guidance on customisation/ configuration for your system. This is intended to make is more understandable and re-usable to a wider audience.
+
 
