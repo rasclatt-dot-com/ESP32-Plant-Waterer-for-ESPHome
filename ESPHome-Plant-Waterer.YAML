@@ -103,4 +103,4 @@ mqtt:
   username: !secret mqtt_hostname
   password: !secret mqtt_password
   
-captive_portal:
+captive_portal: 
